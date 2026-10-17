@@ -1,38 +1,41 @@
 {
-  "name": "Example",
+  "name": "RNCExample",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
-    "appium": "appium",
     "ios": "react-native run-ios",
-    "windows": "react-native run-windows",
-    "start": "react-native start",
-    "test": "jest",
-    "test:windows": "yarn jest --setupFiles=./jest-setups/jest.setup.windows.js",
     "lint": "eslint .",
-    "postinstall": "node ../scripts/examples_postinstall.js"
+    "start": "react-native start",
+    "test": "jest"
   },
   "dependencies": {
-    "react": "16.11.0",
-    "react-native": "0.62.2",
-    "react-native-config": "../",
-    "react-native-windows": "^0.62.0-0"
+    "react": "19.2.3",
+    "react-native": "0.87.1",
+    "react-native-config": "link:../"
   },
   "devDependencies": {
-    "@babel/core": "^7.6.2",
-    "@babel/runtime": "^7.6.2",
-    "@react-native-community/eslint-config": "^0.0.5",
-    "appium": "^1.18.1",
-    "babel-jest": "^24.9.0",
-    "eslint": "^6.5.1",
-    "jest": "^24.9.0",
-    "metro-react-native-babel-preset": "^0.58.0",
-    "react-test-renderer": "16.11.0",
-    "selenium-appium": "^0.0.15",
-    "selenium-webdriver": "^4.0.0-alpha.7"
+    "@babel/core": "^7.25.2",
+    "@babel/preset-env": "^7.25.3",
+    "@babel/runtime": "^7.25.0",
+    "@react-native-community/cli": "20.2.0",
+    "@react-native-community/cli-platform-android": "20.2.0",
+    "@react-native-community/cli-platform-ios": "20.2.0",
+    "@react-native/babel-preset": "0.87.1",
+    "@react-native/eslint-config": "0.87.1",
+    "@react-native/jest-preset": "0.87.1",
+    "@react-native/metro-config": "0.87.1",
+    "@react-native/typescript-config": "0.87.1",
+    "@types/jest": "^29.5.13",
+    "@types/react": "^19.2.0",
+    "@types/react-test-renderer": "^19.1.0",
+    "eslint": "^8.19.0",
+    "jest": "^29.6.3",
+    "prettier": "2.8.8",
+    "react-test-renderer": "19.2.3",
+    "typescript": "^6.0.3"
   },
-  "jest": {
-    "preset": "react-native"
+  "engines": {
+    "node": ">= 22.11.0"
   }
 }

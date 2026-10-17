@@ -16,8 +16,8 @@
     <AppContainerApplication>true</AppContainerApplication>
     <ApplicationType>Windows Store</ApplicationType>
     <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
-    <WindowsTargetPlatformVersion Condition=" '$(WindowsTargetPlatformVersion)' == '' ">10.0.18362.0</WindowsTargetPlatformVersion>
-    <WindowsTargetPlatformMinVersion>10.0.16299.0</WindowsTargetPlatformMinVersion>
+    <WindowsTargetPlatformVersion Condition=" '$(WindowsTargetPlatformVersion)' == '' ">10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformMinVersion>10.0.17763.0</WindowsTargetPlatformMinVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="ReactNativeWindowsProps">
@@ -113,7 +113,7 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory);$(SolutionDir)\Generated Files</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory);$(SolutionDir)\Generated Files</AdditionalIncludeDirectories>
     </ClCompile>
-     <PreBuildEvent>
+    <PreBuildEvent>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">node $(ProjectDir)\..\code\generate-header.js $(SolutionDir) $(SolutionDir) </Command>
     </PreBuildEvent>
     <PreBuildEvent>
@@ -148,6 +148,8 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\codegen\NativeConfigModuleDataTypes.g.h" />
+    <ClInclude Include="..\codegen\NativeConfigModuleSpec.g.h" />
     <ClInclude Include="..\code\pch.h" />
     <ClInclude Include="..\code\ReactPackageProvider.h">
       <DependentUpon>ReactPackageProvider.idl</DependentUpon>

@@ -1,38 +1,41 @@
-# Example app using react-native-config
+# react-native-config example
 
-Just a simple app accessing config variables from `.env` and `.env.production`.
+Example app demonstrating [react-native-config](../) on React Native 0.87 (New Architecture).
 
+The app reads `ENV` and `API_URL` from the [`.env`](.env) file in this directory and renders them on screen.
 
-## Running
+## Setup
 
-By default it will read variables from `.env`:
-
-```bash
-$ react-native run-android
+```sh
+yarn install
 ```
 
-To read from another file just specify it with `ENVFILE`, like:
+## iOS
 
-```bash
-$ ENVFILE=.env.prod react-native run-android
+```sh
+cd ios
+bundle install
+bundle exec pod install
+cd ..
+yarn ios
 ```
 
-## Running on Windows
+## Android
 
-To use the default `.env` file:
-
-```console
-npx react-native run-windows
+```sh
+yarn android
 ```
 
-To read from another file:
-```console
-set ENVFILE=.env.production
-npx react-native run-windows
+## Tests
+
+```sh
+yarn test
 ```
 
-## Running from Xcode
+## Note for contributors
 
-Open the Xcode project file in `Example/ios/Example.xcodeproj`.
+The app depends on the library through a symlink (`"react-native-config": "link:../"`), so building the iOS example runs the Config codegen build phase against the real library sources and overwrites `ios/ReactNativeConfig/GeneratedDotEnv.m` in the repository root. Don't commit that change — restore the placeholder before committing:
 
-Notice there are two schemes setup for the application: "Example" runs the default build, reading vars from `.env` – and "Example (production)" is configured to read from `.env.production`.
+```sh
+git checkout -- ../ios/ReactNativeConfig/GeneratedDotEnv.m
+```

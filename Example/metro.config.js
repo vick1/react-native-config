@@ -1,33 +1,20 @@
-/**
- * Metro configuration for React Native
- * https://github.com/facebook/react-native
- *
- * @format
- */
 const path = require('path');
-const blacklist = require('metro-config/src/defaults/blacklist');
+const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
 
-module.exports = {
+/**
+ * Metro configuration
+ * https://reactnative.dev/docs/metro
+ *
+ * react-native-config is linked from the repository root (one level up), so
+ * Metro must watch it to resolve the symlinked package.
+ *
+ * @type {import('@react-native/metro-config').MetroConfig}
+ */
+const config = {
+  watchFolders: [path.resolve(__dirname, '..')],
   resolver: {
-    blacklistRE: blacklist([
-      // This stops "react-native run-windows" from causing the metro server to crash if its already running
-      new RegExp(
-        `${path.resolve(__dirname, 'windows').replace(/[/\\]/g, '/')}.*`,
-      ),
-      // This prevents "react-native run-windows" from hitting: EBUSY: resource busy or locked, open msbuild.ProjectImports.zip
-      new RegExp(
-        `${path
-          .resolve(__dirname, 'msbuild.ProjectImports.zip')
-          .replace(/[/\\]/g, '/')}.*`,
-      ),
-    ]),
-  },
-  transformer: {
-    getTransformOptions: async () => ({
-      transform: {
-        experimentalImportSupport: false,
-        inlineRequires: false,
-      },
-    }),
+    nodeModulesPaths: [path.resolve(__dirname, 'node_modules')],
   },
 };
+
+module.exports = mergeConfig(getDefaultConfig(__dirname), config);

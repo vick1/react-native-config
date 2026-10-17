@@ -32,8 +32,10 @@ if (fs.existsSync(envFile)) {
 function generateFiles(vars) {
   // Native code
   let nativeCode = '';
-  // React Native Module code
+  // React Native Module code: attribute-based constants block
   let rnCode = '';
+  // Snippets for building a JS object with all constants
+  let objectBuilder = '';
   nativeCode += '#include<string>\n'
   nativeCode += 'namespace ReactNativeConfig {\n'
   for (let {key, value} of vars) {
@@ -41,10 +43,12 @@ function generateFiles(vars) {
     nativeCode += `  inline static std::string ${key} = ${escaped};\n`
     rnCode += `REACT_CONSTANT(${key});\n`
     rnCode += `static inline const std::string ${key} = ${escaped};\n`;
+    objectBuilder += `  obj["${key}"] = ReactNativeConfig::${key};\n`;
   }
   nativeCode +='}\n'
   updateFile(nativeCode, path.join(outDir, 'RNCConfigValues.h'))
   updateFile(rnCode, path.join(outDir, 'RNCConfigValuesModule.inc.g.h'))
+  updateFile(objectBuilder, path.join(outDir, 'RNCConfigValuesObject.inc.g.h'))
 }
 
 // Escape the string so it will work with C++
